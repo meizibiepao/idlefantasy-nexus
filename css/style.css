@@ -54,7 +54,24 @@ body {
 /* 为提升首屏文字可读性，加入左侧深色渐变遮罩 */
 .section-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.68) 0%, rgba(0,0,0,.52) 28%, rgba(0,0,0,.28) 50%, rgba(0,0,0,0) 68%); pointer-events: none; }
 .section-hero { position: relative; min-height: 100vh; display: grid; place-items: stretch; color: #111; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; background-image: url('../images/bg_01_blank.jpg'); background-size: cover; background-position: center right; background-attachment: fixed; filter: saturate(105%) contrast(102%); }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/bg_01_blank.jpg');
+  background-size: cover;
+  background-position: center right;
+  background-attachment: fixed;
+  filter: saturate(105%) contrast(102%);
+}
+
+/* 移动端优化版 */
+@media (max-width: 860px) {
+  .hero-bg {
+    background-image: url('../images/bg_01_blank_mobile.jpg'); /* ✅ 轻量版图 */
+    background-attachment: scroll; /* ✅ 避免移动端 fixed 卡顿 */
+    filter: none; /* ✅ 减少渲染负担 */
+  }
+}
 .hero-inner { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 24px; min-height: 100vh; }
 .hero-copy { align-self: center; max-width: 720px; padding: 120px 0 80px; }
 .title { color: #ffffff; font-size: clamp(40px, 6vw, 68px); margin: 0 0 10px; text-shadow: 0 3px 12px rgba(0,0,0,.75), 0 1px 4px rgba(0,0,0,.5); font-weight: 800; }
